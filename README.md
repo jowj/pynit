@@ -25,3 +25,16 @@ So far i've done nothing.
 - [ ] Figure out how to post an item to my feed as private
 - [ ] Enable a conditional; NSFW items get posted as private, regular items as public.
 - [ ] Iterate through a list.
+
+### IF WE RECEIVE OVER 5 MILLION DOLLARS I WILL:
+- [ ] figure out how the fuck to compare urls/titles against already existing entries in pinboard
+  - and obviously don't add dupes
+- [ ] figure out how to pull in RES saved items; that'll be weird slash impossible maybe
+
+
+## Information about reddit (i'm so sorry)
+So, there are multiple kinds of reddit posts, and each kind of reddit post seems to have distinct names for the same things, which is REALLY fucking annoying. Its extra frustrating because there's not just a quick lookup for this, you have to just dig through Too Much json.
+
+If you're using PRAW, a reddit /post/ has an attribute called `.is_self` that's boolean. If its true, its a text only post, if its false then its a link post.
+
+Reddit comments do not have this attribute. They DO have an attribute called `.is_root`, which i use to differentiate themm.
