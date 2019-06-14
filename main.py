@@ -11,19 +11,18 @@ reddit = praw.Reddit(client_id=os.environ.get('REDDIT_ID'),
                      )
 
 your_user = reddit.redditor(os.environ.get('REDDIT_UN'))
-saved_posts = your_user.saved(limit=None)
+saved_posts = your_user.saved(limit=20)
 
 posts_to_save = []
 for link in saved_posts:
-    try:
-        posts_to_save.append([link.name, link.subreddit.display_name, link.url, link.author.name, link.title])
-    except AttributeError:
-        # only a comment, not a saved post
-        pass
-
-# printing for test
-# print(posts_to_save)
-    
+    if hasattr(link, 'is_self'):
+        posts_to_save.append([link.name, link.subreddit.display_name, link.author.name, link.selftext, link.title])
+    elif hasattr(link, 'is_root'):    
+        posts_to_save.append([link.name, link.subreddit.display_name, link.body, link.author.name])
+        # pdb.set_trace()
+    else:
+        pdb.set_trace()
+            
 with open('data.json', 'w') as outfile:
     json.dump(posts_to_save, outfile, indent=2)
 
