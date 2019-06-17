@@ -11,7 +11,7 @@ Currently i'm getting only the first page of saved, no NSFW items
   - in praw this is done through "limit=None" arg.
 - [X] Figure out how to enable pulling NSFW items
   - in praw this is actually just done by default
-- [ ] Figure out how to differentiate between self.posts, link.posts, and comments
+- [X] Figure out how to differentiate between self.posts, link.posts, and comments
   - each one will have different fields but REDDIT DOESN'T DOCUMENT THIS
   - because reddit is stupid, that's why, i guess.
 
