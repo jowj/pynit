@@ -10,6 +10,7 @@ requests = "*"
 json = "*"
 pprint = "*"
 praw = "*"
+pysnooper = "*"
 
 [requires]
 python_version = "3.7"
