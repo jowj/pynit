@@ -20,7 +20,9 @@ Do i need to do anything here, actually, or is json fine?
 
 ### Putting data in pinboard
 So far i've done nothing.
-- [ ] Get regular auth to work
+- [X] Get auth token to work
+  - Finally got this to work; I had a fundamental mistunderstanding of what pinboard meant by "method" in the URL.
+- [X] Figure out how to pull existing posts
 - [ ] Figure out how to post an item to my feed as public
 - [ ] Figure out how to post an item to my feed as private
 - [ ] Enable a conditional; NSFW items get posted as private, regular items as public.
