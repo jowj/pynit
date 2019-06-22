@@ -2,7 +2,7 @@ import json
 import os
 import requests
 import pysnooper
-
+import pdb
 
 pinboard_token = os.environ.get("PINBOARD_TOKEN")
 pinboard_base_url = "https://api.pinboard.in/v1/"
@@ -18,11 +18,11 @@ def add_pin_url(reddit_dict):
     add_post_snippet = f"posts/add?auth_token={pinboard_token}"
     headers = {'Content-type': 'application/json'}
     args = {
-        'url': reddit_dict.url,
-        'description': reddit_dict.title,
-        'extended': reddit_dict.description,
-        'tags': reddit_dict.tag,
-        'replace': no
+        'url': reddit_dict['url'],
+        'description': reddit_dict['title'],
+        'extended': reddit_dict['description'],
+        'tags': reddit_dict['tag'],
+        'replace': 'no'
     }
 
     post_url = pinboard_base_url + add_post_snippet
@@ -34,9 +34,10 @@ def add_pin_url(reddit_dict):
 def import_reddit_url_from_file(filename):
     with open(filename, 'r') as infile:
         data = json.loads(infile.read())
-    return data
+    # pdb.set_trace()
+    return data[0]
 
 
 if __name__ == "__main__":
-    dict = import_reddit_url_from_file("data.json")
-    add_pin_url(dict)
+    reddit_data = import_reddit_url_from_file("data.json")
+    add_pin_url(reddit_data)
