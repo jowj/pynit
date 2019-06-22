@@ -11,6 +11,7 @@ json = "*"
 pprint = "*"
 praw = "*"
 pysnooper = "*"
+urllib-parse = "*"
 
 [requires]
 python_version = "3.7"
