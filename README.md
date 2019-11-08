@@ -9,6 +9,10 @@ specifically, comments and posts saved to your reddit user profile can be pulled
 
 the tag "added-by-pynnit" is also added to each entry moved to pinboard in this way. This allows for easy viewing of all imported links. I found this very useful when I was writing the script in the first place, but you may not want it. 
 ## Using this bullshit 
+### Installing
+I use `pipenv` pretty exclusively because of how it works with my editor. that's the only package manager i've actually tested with, but theoretically the typical `pip install -r requirements.txt` should work just fine.
+
+### Setting up the environment
 You need several things to use this project:
 - Reddit username
 - Reddit password
@@ -63,13 +67,6 @@ So far i've done nothing.
 - [ ] Figure out how to post an item to my feed as private
 - [ ] Enable a conditional; NSFW items get posted as private, regular items as public.
 - [X] Iterate through a list.
-
-#### IF WE RECEIVE OVER 5 MILLION DOLLARS I WILL:
-- [X] figure out how the fuck to compare urls/titles against already existing entries in pinboard
-  - and obviously don't add dupes
-  - HAH you don't have to worry about this, Pinboard will do this for you! Hurray.
-- [ ] figure out how to pull in RES saved items; that'll be weird slash impossible maybe
-
 
 ### Information about reddit (i'm so sorry)
 So, there are multiple kinds of reddit posts, and each kind of reddit post seems to have distinct names for the same things, which is REALLY fucking annoying. Its extra frustrating because there's not just a quick lookup for this, you have to just dig through Too Much json.
