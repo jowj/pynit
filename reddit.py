@@ -1,7 +1,7 @@
-import praw
 import json
 import os
-import pdb
+import praw
+
 
 def munge_idiot_data(reddit_dict):
     """
@@ -22,26 +22,37 @@ def munge_idiot_data(reddit_dict):
 
 
 if __name__ == "__main__":
-    reddit = praw.Reddit(client_id=os.environ.get('REDDIT_ID'),
+    REDDIT = praw.Reddit(client_id=os.environ.get('REDDIT_ID'),
                          client_secret=os.environ.get('REDDIT_SECRET'),
                          user_agent='/u/ pynit-tasks',
                          username=os.environ.get('REDDIT_UN'),
                          password=os.environ.get('REDDIT_PW')
     )
 
-    your_user = reddit.redditor(os.environ.get('REDDIT_UN'))
-    saved_posts = your_user.saved(limit=None)
+    # this line is the most cursed line in programming
+    # REDDIT.redditor,
+    YOUR_USER = REDDIT.redditor(os.environ.get('REDDIT_UN'))
+    SAVED_POSTS = YOUR_USER.saved(limit=None)
 
-    posts_to_save = []
-    for link in saved_posts:
+    POSTS_TO_SAVE = []
+    for link in SAVED_POSTS:
         if hasattr(link, 'is_self'):
-            posts_to_save.append({'title':link.title, 'tag':link.subreddit.display_name + ' added-by-pynnit', 'description':link.selftext, 'url':link.permalink})
+            POSTS_TO_SAVE.append({
+                'title': link.title,
+                'tag': link.subreddit.display_name + ' added-by-pynnit',
+                'description': link.selftext,
+                'url': link.permalink
+            })
         elif hasattr(link, 'is_root'):
-            posts_to_save.append({'title':link.link_title, 'tag':link.subreddit.display_name + ' added-by-pynnit', 'description':link.body, 'url':link.link_url})
+            POSTS_TO_SAVE.append({
+                'title': link.link_title,
+                'tag': link.subreddit.display_name + ' added-by-pynnit',
+                'description': link.body,
+                'url': link.link_url
+            })
         else:
             print("shit is fucked.")
 
-    munged_data = munge_idiot_data(posts_to_save)
+    MUNGED_DATA = munge_idiot_data(POSTS_TO_SAVE)
     with open('data.json', 'w') as outfile:
-        json.dump(munged_data, outfile, indent=2)
-
+        json.dump(MUNGED_DATA, outfile, indent=2)
