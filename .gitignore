@@ -106,3 +106,4 @@ venv.bak/
 # project specific
 # this is used when I'm testing bullshit.
 data.json
+template.sh
