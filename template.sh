@@ -1,0 +1,5 @@
+export REDDIT_UN=''
+export REDDIT_PW=''
+export REDDIT_ID=''
+export REDDIT_SECRET=''
+export PINBOARD_TOKEN=''
