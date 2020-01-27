@@ -58,3 +58,9 @@ So, there are multiple kinds of reddit posts, and each kind of reddit post seems
 If you're using PRAW, a reddit /post/ has an attribute called `.is_self` that's boolean. If its true, its a text only post, if its false then its a link post.
 
 Reddit /comments/ do not have this attribute. They DO have an attribute called `.is_root`, which i use to differentiate themm.
+
+# roadmap
+
+- [ ] move reddit/pinboard script to single file.
+- [ ] make the script take command line arguments (i.e. must pass `-reddit` if you want to sync saved posts)
+- [ ] write new function `update_tags` that will take a tag and retag to a new name (add a cli flag)
