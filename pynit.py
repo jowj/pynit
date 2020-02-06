@@ -128,12 +128,12 @@ def main(*args, **kwargs):
     pinboard_auth_snippet = f"?auth_token={pinboard_token}"
 
     if parsed.retag:
-        original_tag = input('what tag would you like to replace?')
-        updated_tag = input('what tag would you like to use instead?')
+        original_tag = input('what tag would you like to replace? ')
+        updated_tag = input('what tag would you like to use instead? ')
 
-        update_pin_tag(original_tag, updated_tag, pinboard_base_url, pinboard_auth_snippet)
+        response = update_pin_tag(original_tag, updated_tag, pinboard_base_url, pinboard_auth_snippet)
 
-        return
+        return response
 
     reddit = praw.Reddit(client_id=parsed.reddit_cid,
                          client_secret=parsed.reddit_sec,
