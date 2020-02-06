@@ -59,6 +59,20 @@ def add_pin_url(reddit_dict, base_url, auth_snippet):
 
     return response
 
+def update_pin_tag(old_tag, new_tag, base_url, auth_snippet):
+    rename_tags_snippet = "tags/rename"
+    # headers = {'Content-type': 'application/json'}
+    args = {
+        'old': old_tag,
+        'new': new_tag
+    }
+
+    post_url = base_url + rename_tags_snippet + auth_snippet
+    response = requests.get(post_url, params=args)
+
+    return response
+
+
 
 def import_reddit_url_from_file(filename):
     """
@@ -89,8 +103,10 @@ def main(*args, **kwargs):
     parser = argparse.ArgumentParser(
         description="pynit: an integration between saved reddit posts and pinboard.")
     parser.add_argument(
-        "--debug", "-d", action='store_true',
-        help="Include debugging output")
+        "--debug", "-d", action='store_true', help="Include debugging output")
+    parser.add_argument(
+        "--retag", "-rt", action='store_true',
+        help="Select this if you want to update an existing tag")
     parser.add_argument(
         "--reddit-un", "-run", required=True, help="Reddit username")
     parser.add_argument(
@@ -105,6 +121,19 @@ def main(*args, **kwargs):
     if parsed.debug:
         sys.excepthook = idb_excepthook
         LOGGER.setLevel(logging.DEBUG)
+
+
+    pinboard_token = parsed.pb_apikey
+    pinboard_base_url = "https://api.pinboard.in/v1/"
+    pinboard_auth_snippet = f"?auth_token={pinboard_token}"
+
+    if parsed.retag:
+        original_tag = input('what tag would you like to replace?')
+        updated_tag = input('what tag would you like to use instead?')
+
+        update_pin_tag(original_tag, updated_tag, pinboard_base_url, pinboard_auth_snippet)
+
+        return
 
     reddit = praw.Reddit(client_id=parsed.reddit_cid,
                          client_secret=parsed.reddit_sec,
@@ -142,9 +171,7 @@ def main(*args, **kwargs):
         json.dump(MUNGED_DATA, outfile, indent=2)
 
     # handle the pinboard side of things
-    pinboard_token = parsed.pb_apikey
-    pinboard_base_url = "https://api.pinboard.in/v1/"
-    pinboard_auth_snippet = f"?auth_token={pinboard_token}"
+
 
     """
     You have to sleep for 3 seconds between requests or Maciej will Get Unhappy
