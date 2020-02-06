@@ -26,27 +26,14 @@ https://github.com/reddit-archive/reddit/wiki/oauth2
 Your pinboard api key can be found here (assuming you are logged in):
 https://pinboard.in/settings/password/
 
-You need to export these in your shell in the following format:
-```
-export REDDIT_UN=''
-export REDDIT_PW=''
-export REDDIT_ID=''
-export REDDIT_SECRET=''
-export PINBOARD_TOKEN=''
-```
-
-Then run the following commands, in the order given:
-
-```
-python main.py
-python pinboard.py
-```
+You then pass those variables as arguments to the script run:
+`☭ python pynit.py --reddit-un '' --reddit-pw '' --reddit-cid '' --reddit-sec '' --pb-apikey ''`
 
 ## background and additional information
 ### getting data from reddit
-if you don't have MFA set up for your account (you should do that) then this is easy. everything works as expected. BUT if you DO have MFA set up let me tell you: this gets dumber. when you export your reddit password you have to also include an active MFA 6 digit code, like this:
+if you don't have MFA set up for your account (you should do that) then this is easy. everything works as expected. BUT if you DO have MFA set up let me tell you: this gets dumber. when you enter your reddit password you have to also include an active MFA 6 digit code, like this:
 
-`export REDDIT_PW='password:123456'`
+`... --redditpw "thing:123123"`
 
 so good.
 ### putting data in pinboard
@@ -61,6 +48,6 @@ Reddit /comments/ do not have this attribute. They DO have an attribute called `
 
 # roadmap
 
-- [ ] move reddit/pinboard script to single file.
-- [ ] make the script take command line arguments (i.e. must pass `-reddit` if you want to sync saved posts)
-- [ ] write new function `update_tags` that will take a tag and retag to a new name (add a cli flag)
+- [X] move reddit/pinboard script to single file.
+- [x] make the script take command line arguments (i.e. must pass `-reddit` if you want to sync saved posts)
+- [x] write new function `update_tags` that will take a tag and retag to a new name (add a cli flag)
