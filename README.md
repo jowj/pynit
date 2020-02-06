@@ -27,7 +27,23 @@ Your pinboard api key can be found here (assuming you are logged in):
 https://pinboard.in/settings/password/
 
 You then pass those variables as arguments to the script run:
+
+### syncing posts from reddit
+
 `☭ python pynit.py --reddit-un '' --reddit-pw '' --reddit-cid '' --reddit-sec '' --pb-apikey ''`
+
+fill in your information and off you go!
+
+### updating tags 
+To be specfici, this allows you to update tags _in bulk_; if you have 80 items under the 'clothing' tag, and 40 items under the 'clothes' tag you can combine them by running this code
+`☭ python pynit.py -rt --reddit-un '' --reddit-pw '' --reddit-cid '' --reddit-sec '' --pb-apikey ''`
+
+You will then be asked for the tag you want to replace, and what you want to replace it with. This is an entirely `pinboard` side operation; there's no technical reason that the reddit information should be required, I just haven't split that off the main loop yet. As long as the flags are present & the `pb-apikey` is correct you will be able to update tags. You will not need _accurate_ reddit creds for this operation. This will eventually be fixed!
+
+### running in debug mode
+`☭ python pynit.py -d --reddit-un '' --reddit-pw '' --reddit-cid '' --reddit-sec '' --pb-apikey ''`
+
+Thanks to @mrled for this. I can't believe there's still so much I don't know about `pdb`!! The `-d` flag will do nothing unless the script encounters an exception. If it does, it'll dump you into the `pdb.pm()` dbg repl. Its SUPER useful while you're tweaking stuff / catching idiot mistakes with your password/mfa/whatever.
 
 ## background and additional information
 ### getting data from reddit
@@ -48,6 +64,7 @@ Reddit /comments/ do not have this attribute. They DO have an attribute called `
 
 # roadmap
 
-- [X] move reddit/pinboard script to single file.
+- [x] move reddit/pinboard script to single file.
 - [x] make the script take command line arguments (i.e. must pass `-reddit` if you want to sync saved posts)
 - [x] write new function `update_tags` that will take a tag and retag to a new name (add a cli flag)
+- [ ] Remove requirement for unnecessary creds when doing `pinboard` specific operations
