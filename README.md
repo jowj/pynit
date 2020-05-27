@@ -36,9 +36,9 @@ fill in your information and off you go!
 
 ### updating tags 
 To be specific, this allows you to update tags _in bulk_; if you have 80 items under the 'clothing' tag, and 40 items under the 'clothes' tag you can combine them by running this code
-`☭ python pynit.py -rt --reddit-un '' --reddit-pw '' --reddit-cid '' --reddit-sec '' --pb-apikey ''`
+`☭ python pynit.py -rt --pb-apikey ''`
 
-You will then be asked for the tag you want to replace, and what you want to replace it with. This is an entirely `pinboard` side operation; there's no technical reason that the reddit information should be required, I just haven't split that off the main loop yet. As long as the flags are present & the `pb-apikey` is correct you will be able to update tags. You will not need _accurate_ reddit creds for this operation. This will eventually be fixed!
+You will then be asked for the tag you want to replace, and what you want to replace it with. This is an entirely `pinboard` side operation so you don't need any reddit credentials for this.
 
 ### running in debug mode
 `☭ python pynit.py -d --reddit-un '' --reddit-pw '' --reddit-cid '' --reddit-sec '' --pb-apikey ''`
