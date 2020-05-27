@@ -19,7 +19,7 @@ def munge_idiot_data(reddit_dict):
     every url that comes through my apparatus.
     """
     protocol = 'https'
-    # pdb.set_trace()
+
     for single_dict in reddit_dict:
         if protocol in single_dict['url']:
             pass
@@ -162,17 +162,17 @@ def main(*args, **kwargs):
     your_user = reddit.redditor(parsed.reddit_un)
     saved_posts = your_user.saved(limit=None)
 
-    POSTS_TO_SAVE = []
+    posts_to_save = []
     for link in saved_posts:
         if hasattr(link, 'is_self'):
-            POSTS_TO_SAVE.append({
+            posts_to_save.append({
                 'title': link.title,
                 'tag': link.subreddit.display_name + ' added-by-pynnit',
                 'description': link.selftext,
                 'url': link.permalink
             })
         elif hasattr(link, 'is_root'):
-            POSTS_TO_SAVE.append({
+            posts_to_save.append({
                 'title': link.link_title,
                 'tag': link.subreddit.display_name + ' added-by-pynnit',
                 'description': link.body,
@@ -181,9 +181,9 @@ def main(*args, **kwargs):
         else:
             print("shit is fucked.")
 
-    MUNGED_DATA = munge_idiot_data(POSTS_TO_SAVE)
+    munged_data = munge_idiot_data(posts_to_save)
     with open('data.json', 'w') as outfile:
-        json.dump(MUNGED_DATA, outfile, indent=2)
+        json.dump(munged_data, outfile, indent=2)
 
     # handle the pinboard side of things
 
