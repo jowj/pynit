@@ -108,13 +108,13 @@ def main(*args, **kwargs):
         "--retag", "-rt", action='store_true',
         help="Select this if you want to update an existing tag")
     parser.add_argument(
-        "--reddit-un", "-run", required=True, help="Reddit username")
+        "--reddit-un", "-run", help="Reddit username")
     parser.add_argument(
-        "--reddit-pw", "-rpw", required=True, help="Reddit password")
+        "--reddit-pw", "-rpw", help="Reddit password")
     parser.add_argument(
-        "--reddit-cid", "-rcid", required=True, help="Reddit client id")
+        "--reddit-cid", "-rcid", help="Reddit client id")
     parser.add_argument(
-        "--reddit-sec", "-rsec", required=True, help="Reddit client secret")
+        "--reddit-sec", "-rsec", help="Reddit client secret")
     parser.add_argument(
         "--pb-apikey", "-pba", required=True, help="Pinboard api key")
     parsed = parser.parse_args()
@@ -122,10 +122,10 @@ def main(*args, **kwargs):
         sys.excepthook = idb_excepthook
         LOGGER.setLevel(logging.DEBUG)
 
-
     pinboard_token = parsed.pb_apikey
     pinboard_base_url = "https://api.pinboard.in/v1/"
     pinboard_auth_snippet = f"?auth_token={pinboard_token}"
+
 
     if parsed.retag:
         original_tag = input('what tag would you like to replace? ')
@@ -134,6 +134,21 @@ def main(*args, **kwargs):
         response = update_pin_tag(original_tag, updated_tag, pinboard_base_url, pinboard_auth_snippet)
 
         return response
+
+    if not parsed.reddit_un:
+        exit("hey man you need your reddit username (and maybe more)")
+
+    if not parsed.reddit_pw:
+        exit("hey man you need your reddit_pw (and maybe more)")
+
+    if not parsed.reddit_cid:
+        exit("hey man you need your reddit client id")
+
+    if not parsed.reddit_sec:
+        exit("hey man you need your reddit client secret")
+
+    if not parsed.pb_apikey:
+        exit("hey man you need to enter your pinboard API key")
 
     reddit = praw.Reddit(client_id=parsed.reddit_cid,
                          client_secret=parsed.reddit_sec,
