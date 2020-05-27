@@ -10,7 +10,7 @@ specifically, comments and posts saved to your reddit user profile can be pulled
 the tag "added-by-pynnit" is also added to each entry moved to pinboard in this way. This allows for easy viewing of all imported links. I found this very useful when I was writing the script in the first place, but you may not want it. 
 ## using this bullshit 
 ### installing
-I use `pipenv` pretty exclusively because of how it works with my editor. that's the only package manager i've actually tested with, but theoretically the typical `pip install -r requirements.txt` should work just fine.
+I use poetry a lot. ~poetry install~ should do you just fine.
 
 ### setting up the environment
 You need several things to use this project:
