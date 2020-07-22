@@ -8,7 +8,7 @@ specifically, comments and posts saved to your reddit user profile can be pulled
 - post url (becomes url)
 
 the tag "added-by-pynnit" is also added to each entry moved to pinboard in this way. This allows for easy viewing of all imported links. I found this very useful when I was writing the script in the first place, but you may not want it. 
-## using this bullshit 
+## using this  
 ### installing
 I use poetry a lot. ~poetry install~ should do you just fine.
 
