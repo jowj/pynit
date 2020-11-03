@@ -59,6 +59,7 @@ def add_pin_url(reddit_dict, base_url, auth_snippet):
 
     return response
 
+
 def update_pin_tag(old_tag, new_tag, base_url, auth_snippet):
     rename_tags_snippet = "tags/rename"
     # headers = {'Content-type': 'application/json'}
@@ -71,7 +72,6 @@ def update_pin_tag(old_tag, new_tag, base_url, auth_snippet):
     response = requests.get(post_url, params=args)
 
     return response
-
 
 
 def import_reddit_url_from_file(filename):
@@ -155,7 +155,7 @@ def main(*args, **kwargs):
                          user_agent='/u/ pynit-tasks',
                          username=parsed.reddit_un,
                          password=parsed.reddit_pw
-    )
+                         )
 
     # this line is the most cursed line in programming
     # REDDIT.redditor,
@@ -187,14 +187,13 @@ def main(*args, **kwargs):
 
     # handle the pinboard side of things
 
-
     """
     You have to sleep for 3 seconds between requests or Maciej will Get Unhappy
     per https://pinboard.in/api
     """
     reddit_data = import_reddit_url_from_file("data.json")
     for entry in reddit_data:
-        post_response = add_pin_url(entry, pinboard_base_url, pinboard_auth_snippet)
+        add_pin_url(entry, pinboard_base_url, pinboard_auth_snippet)
         time.sleep(3)
 
 
